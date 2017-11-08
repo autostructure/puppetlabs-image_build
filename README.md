@@ -1,7 +1,7 @@
 # image_build
 
 [![Puppet
-Forge](https://img.shields.io/puppetforge/v/puppetlabs/image_build.svg)](https://forge.puppetlabs.com/puppetlabs/image_build)
+Forge](https://img.shields.io/puppetforge/v/autostructure/image_build.svg)](https://forge.puppetlabs.com/autostructure/image_build)
 [![Build
 Status](https://secure.travis-ci.org/puppetlabs/puppetlabs-image_build.png)](https://travis-ci.org/puppetlabs/puppetlabs-image_build)
 [![Coverage
@@ -57,12 +57,12 @@ where this can be useful:
 
 ## Setup
 
-`puppetlabs/image_build` is a Puppet Module and is available on the Forge.
+`autostructure/image_build` is a Puppet Module and is available on the Forge.
 
 The following should work in most cases:
 
 ```
-puppet module install puppetlabs/image_build
+puppet module install autostructure/image_build
 ```
 
 You don't need any additional gems installed unless you are looking to
@@ -293,35 +293,6 @@ and {port} in the following with your own values.
 This should use the code on the Puppet Master to build the image.
 
 
-### Minimizing image size with Rocker
-
-`image_build` supports using the
-[Rocker](https://github.com/grammarly/rocker) build tool in place of the
-standard Docker build command. The Rocker output provides a little more
-detail about the build process, but also allows for mounting of folders
-at build time which minimizes the size of the resulting image.
-
-    puppet docker build --rocker
-
-Note that when using Rocker the Puppet tools are not left in the final
-image, reducing it's file size.
-
-
-### Building ACI images
-
-As well as Docker support, `image_build` also experimentally supports building
-[ACI](https://github.com/appc/spec/blob/master/spec/aci.md) compatible
-images for use with Rkt or other supported runtimes. This works in the
-same manner as above. The following command should generate a shell
-script which, when run, generates an ACI:
-
-    puppet aci script
-
-And if you simply want to build the ACI directly you can just run:
-
-    puppet aci build
-
-
 ## Reference
 
 ```
@@ -331,14 +302,11 @@ USAGE: puppet docker <action> [--from STRING]
 [--os STRING]
 [--os-version STRING]
 [--puppet-agent-version STRING]
-[--r10k-version STRING]
 [--module-path PATH]
 [--expose STRING]
 [--cmd STRING]
 [--entrypoint STRING]
 [--labels KEY=VALUE]
-[--rocker]
-[--[no-]inventory]
 [--hiera-config STRING]
 [--hiera-data STRING]
 [--image-user STRING]
@@ -346,7 +314,6 @@ USAGE: puppet docker <action> [--from STRING]
 [--image-name STRING]
 [--config-file STRING]
 [--config-directory STRING]
-[--master STRING]
 
 Build Docker images and Dockerfiles using Puppet code
 
@@ -369,8 +336,6 @@ OPTIONS:
   --image-name STRING            - The name of the resulting image
   --image-user STRING            - Specify a user to be used to run the
                                    container process
-  --[no-]inventory               - Enable or disable the generation of an
-                                   inventory file at /inventory.json
   --labels KEY=VALUE             - A set of labels to be applied to the
                                    resulting image
   --maintainer STRING            - Name and email address for the maintainer of
@@ -390,13 +355,9 @@ OPTIONS:
                                    used to build the container image
   --puppetfile STRING            - Enable use of Puppetfile to install
                                    dependencies during build
-  --r10k-version STRING          - Version of R10k to use for installing modules
                                    from Puppetfile
-  --rocker                       - Use Rocker as the build tool
   --[no-]show-diff               - Enable or disable showing the diff when
                                    running Puppet to build the image
-  --skip-puppet-install          - If the base image already contains Puppet we
-                                   can skip installing it
   --volume STRING                - A list of volumes to be added to the
                                    resulting image
 
@@ -413,10 +374,6 @@ The module currently does not support building Windows containers, or
 building containers from a Windows machine. We'll be adding support for
 these in the future.
 
-The inventory functionality does not work correctly on Centos 6 based
-images, so if you're using Centos 6 then you need to pass the
-`--no-inventory` flag.
-
 ## Maintainers
 
-This repository is maintained by: Gareth Rushgrove <gareth@puppet.com>.
+This repository is maintained by: Bryan Belanger <bryan@autostructure.io>
