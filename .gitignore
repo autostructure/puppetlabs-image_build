@@ -12,3 +12,6 @@
 .yardoc
 coverage
 doc
+Dockerfile
+manifests
+metadata.yaml

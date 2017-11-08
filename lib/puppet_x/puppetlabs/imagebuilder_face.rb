@@ -3,36 +3,8 @@ require 'puppet/face'
 module PuppetX
   module Puppetlabs
     class ImageBuilder::Face < Puppet::Face
-      option '--from STRING' do
-        summary 'The base docker image to use for the resulting image'
-        default_to { 'ubuntu:16.04' }
-      end
-
       option '--maintainer STRING' do
         summary 'Name and email address for the maintainer of the resulting image'
-      end
-
-      option '--os STRING' do
-        summary 'The operating system used by the image if not autodetected'
-      end
-
-      option '--os-version STRING' do
-        summary 'The version of the operating system used by the image if not autodetected'
-      end
-
-      option '--puppet-agent-version STRING' do
-        summary 'Version of the Puppet Agent package to install'
-        default_to { '5.2.0' }
-      end
-
-      option '--r10k-version STRING' do
-        summary 'Version of R10k to use for installing modules from Puppetfile'
-        default_to { '2.5.5' }
-      end
-
-      option '--r10k-yaml BOOLEAN' do
-        summary 'When yes, copies the r10k.yaml file to the container before running r10k'
-        default_to { false }
       end
 
       option '--module-path PATH' do
@@ -67,11 +39,6 @@ module PuppetX
         summary 'A set of additional environment variables to be set in the resulting image'
       end
 
-      option '--[no-]inventory' do
-        summary 'Enable or disable the generation of an inventory file at /inventory.json'
-        default_to { true }
-      end
-
       option '--[no-]show-diff' do
         summary 'Enable or disable showing the diff when running Puppet to build the image'
         default_to { true }
@@ -85,11 +52,6 @@ module PuppetX
       option '--hiera-data STRING' do
         summary 'Hieradata directory to use'
         default_to { 'hieradata' }
-      end
-
-      option '--puppetfile STRING' do
-        summary 'Enable use of Puppetfile to install dependencies during build'
-        default_to { 'Puppetfile' }
       end
 
       option '--factfile STRING' do
@@ -117,11 +79,6 @@ module PuppetX
 
       option '--label-schema' do
         summary 'Add label-schema compatible labels'
-        default_to { false }
-      end
-
-      option '--skip-puppet-install' do
-        summary 'If the base image already contains Puppet we can skip installing it'
         default_to { false }
       end
 

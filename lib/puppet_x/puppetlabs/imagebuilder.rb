@@ -199,7 +199,7 @@ module PuppetX
                                when 'alpine'
                                  ['/usr/bin/puppet', 'gem', 'r10k']
                                else
-                                 ['/opt/puppetlabs/bin/puppet', '/opt/puppetlabs/puppet/bin/gem', '/opt/puppetlabs/puppet/bin/r10k']
+                                 ['/usr/local/bin/puppet', '/opt/puppetlabs/puppet/bin/gem', '/opt/puppetlabs/puppet/bin/r10k']
                                end
       end
 
